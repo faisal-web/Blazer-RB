@@ -4,12 +4,14 @@
 @{
     Layout = null;
 }
+@using EmbeddedBlazorContent
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    @Html.EmbeddedBlazorContent()
     <title>BlazorRB</title>
     <base href="~/" />
     <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css" />
@@ -32,5 +34,6 @@
     </div>
 
     <script src="_framework/blazor.server.js"></script>
+    <script src="_content/MatBlazor/dist/matBlazor.js"></script>
 </body>
 </html>

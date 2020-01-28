@@ -10,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using BlazorRB.Data;
+using EmbeddedBlazorContent;
 
 namespace BlazorRB
 {
@@ -49,6 +50,9 @@ namespace BlazorRB
             app.UseStaticFiles();
 
             app.UseRouting();
+
+            // Embedded blazor content get static content from depended DLLs 
+            app.UseEmbeddedBlazorContent(typeof(MatBlazor.BaseMatComponent).Assembly);
 
             app.UseEndpoints(endpoints =>
             {

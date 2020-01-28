@@ -1,15 +1,94 @@
 ﻿@inherits LayoutComponentBase
-
-<div class="sidebar">
-    <NavMenu />
-</div>
-
-<div class="main">
-    <div class="top-row px-4">
-        <a href="https://docs.microsoft.com/aspnet/" target="_blank">About</a>
+@*
+    <div class="sidebar">
+        <NavMenu />
     </div>
 
-    <div class="content px-4">
-        @Body
-    </div>
-</div>
+    <div class="main">
+        <div class="top-row px-4">
+            <a href="https://docs.microsoft.com/aspnet/" target="_blank">About</a>
+        </div>
+
+        <div class="content px-4">
+            @Body
+        </div>
+    </div>*@
+
+@page "/MatDrawerModalFrame"
+
+<MatBlazor.MatAppBarContainer>
+
+    <MatBlazor.MatAppBar Fixed="true">
+        <MatBlazor.MatAppBarRow>
+
+            <MatBlazor.MatAppBarSection>
+                <MatBlazor.MatIconButton Icon="menu" OnClick="@((e) => ButtonClicked())"></MatBlazor.MatIconButton>
+                <MatBlazor.MatAppBarTitle>Blazor RB Desing</MatBlazor.MatAppBarTitle>
+            </MatBlazor.MatAppBarSection>
+
+            <MatBlazor.MatAppBarSection Align="@MatBlazor.MatAppBarSectionAlign.End">
+                <NavLink class="text-white nav-link" href="" Match="NavLinkMatch.All">
+                    Home
+                </NavLink>
+                <NavLink class="text-white nav-link" href="counter">
+                    Counter
+                </NavLink>
+                <NavLink class="text-white nav-link" href="fetchdata">
+                    FatchData
+                </NavLink>
+
+            </MatBlazor.MatAppBarSection>
+        </MatBlazor.MatAppBarRow>
+    </MatBlazor.MatAppBar>
+
+    <MatBlazor.MatAppBarContent>
+        @*Navigation Drawer*@
+            <MatBlazor.MatDrawerContainer Style="width: 100vw">
+                <MatBlazor.MatDrawer Opened="@Opened" Mode="@MatBlazor.MatDrawerMode.Modal">
+                    @* List*@
+                    <MatBlazor.MatListGroup>
+                        <MatBlazor.MatListGroupSubHeader>Dashboard</MatBlazor.MatListGroupSubHeader>
+                        <MatBlazor.MatList>
+                            <MatBlazor.MatListItem>
+                                Post test
+                            </MatBlazor.MatListItem>
+                            <MatBlazor.MatListItem>
+                                Pages
+                            </MatBlazor.MatListItem>
+                            <MatBlazor.MatListItem>
+                                Media
+                            </MatBlazor.MatListItem>
+                        </MatBlazor.MatList>
+
+                        <MatBlazor.MatListGroupSubHeader>Profile</MatBlazor.MatListGroupSubHeader>
+                        <MatBlazor.MatList>
+                            <MatBlazor.MatListItem>
+                                Profile
+                            </MatBlazor.MatListItem>
+                            <MatBlazor.MatListItem>
+                                Change Password
+                            </MatBlazor.MatListItem>
+                            <MatBlazor.MatListItem>
+                                Logout
+                            </MatBlazor.MatListItem>
+                        </MatBlazor.MatList>
+
+                    </MatBlazor.MatListGroup>
+                </MatBlazor.MatDrawer>
+            </MatBlazor.MatDrawerContainer> 
+
+        <MatBlazor.MatDrawerContent>
+            <div class="container" style="padding:1em; margin:1em">@Body</div>
+        </MatBlazor.MatDrawerContent>
+
+    </MatBlazor.MatAppBarContent>
+
+</MatBlazor.MatAppBarContainer>
+
+@functions{
+    bool Opened = false;
+    void ButtonClicked()
+    {
+        Opened = !Opened;
+    }
+}
